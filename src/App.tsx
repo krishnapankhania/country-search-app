@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import StateProvider, { useStateContext } from "./state";
+import Results from "./components/Results";
+import Pagination from "./components/Pagination";
+import Search from "./components/Search";
 
-function App() {
+const Wrapper: React.FC = () => {
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const recordsPerPage: number = 10;
+  const { countries } = useStateContext();
+  const totalPages = Math.ceil(countries.length / recordsPerPage);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <h1>Country Search App</h1>
       </header>
-    </div>
+      <section>
+        <Search />
+        <Results currentPage={currentPage} recordsPerPage={recordsPerPage} />
+        {countries.length > 0 && totalPages > 1 && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
+      </section>
+      <footer>
+        {" "}
+        <p>Developed by Krishna Pankhania</p>
+      </footer>
+    </>
   );
-}
+};
+
+const App: React.FC = () => {
+  return (
+    <StateProvider>
+      <Wrapper />
+    </StateProvider>
+  );
+};
 
 export default App;
