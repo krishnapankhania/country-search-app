@@ -37,7 +37,7 @@ The application fetches country details from the [Rest Countries API](https://re
 
 To run the Country Search App locally, follow these steps:
 
-1. Clone this repository to your local machine using `git clone https://github.com/your-username/country-search-app.git`.
+1. Clone this repository to your local machine using `git clone https://github.com/krishnapankhania/country-search-app`.
 2. Navigate to the project directory: `cd country-search-app`.
 3. Install dependencies by running `npm install` or `yarn install`.
 4. Start the development server: `npm start` or `yarn start`.
